@@ -6,18 +6,22 @@ const keys = require('./config/keys');
 
 const app = express();
 //inform passport to use g strategy
-passport.use(new GoogleStrategy({
-  clientID: keys.googleClientID,
+passport.use(new GoogleStrategy({ // i am 'google'
+  clientID: keys.googleClientID, //need client id & secret
   clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback' //=>where we send user back after access permission
-  }, accessToken => {
-    console.log(accessToken);
+  }, (accessToken,refreshToken,profile,done) => {//after step below strategy do this
+    console.log('1'+accessToken);
+    console.log('2'+refreshToken);
+    console.log('3'+profile);
   })
-); //need client id & secret
+); 
 
-app.get('/',(req,res)=>{
-  res.send({hi:'there and oheran'});
-});
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile','email']
+}));//we have the code now
+//exchange code 
+app.get('/auth/google/callback', passport.authenticate('google'));
 
 
 
