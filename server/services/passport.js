@@ -23,9 +23,10 @@ passport.use(new GoogleStrategy({ // i am 'google'
   callbackURL: '/auth/google/callback' //=>where we send user back after access permission
 }, //that profile.id we want in our db
 (accessToken, refreshToken, profile, done) => { 
+  console.log(profile.id);
   User.findOne({ googleId: profile.id })
     .then( existUser =>{
-      if (existUser) done(null, existUser)
+      if (existUser){ done(null, existUser)}
       else {
         new User({ googleId: profile.id }).save()
           .then(user => done(null,user));  
