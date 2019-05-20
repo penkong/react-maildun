@@ -6,9 +6,14 @@ const keys = require('../config/keys');
 const User = mongoose.model('users'); //one arg means fetch 2 means import sth in
 
 //this is that existence user
-passport.serializeUser((user, done)=>{
+passport.serializeUser((user, done) => {
   done(null, user.id); //its not profile id.
-})
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById({ id })
+    .then(user => done(null, user))
+});
 
 
 //inform passport to use g strategy
