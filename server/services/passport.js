@@ -22,16 +22,13 @@ passport.use(new GoogleStrategy({ // i am 'google'
   clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback', //=>where we send user back after access permission
   proxy: true
-}, //that profile.id we want in our db
-(accessToken, refreshToken, profile, done) => { 
-  console.log(profile.id);
-  User.findOne({ googleId: profile.id })
-    .then( existUser =>{
-      if (existUser){ done(null, existUser)}
-      else {
-        new User({ googleId: profile.id }).save()
-          .then(user => done(null,user));  
-      };
-    });
-}));
+  }, //that profile.id we want in our db
+  async (accessToken, refreshToken, profile, done) => { 
+    const existUser = await User.findOne({ googleId: profile.id })
+      if (existUser){ return done(null, existUser)}
+      const user = await new User({ googleId: profile.id }).save();
+      done(null,user);  
+    }
+  )
+);
 //after step from authRoutes strategy do this give access token to guys
