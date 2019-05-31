@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy({ // i am 'google'
   }, //that profile.id we want in our db
   async (accessToken, refreshToken, profile, done) => { 
     const existUser = await User.findOne({ googleId: profile.id })
-      if (existUser){ return done(null, existUser)}
+      if (existUser) return done(null, existUser);
       const user = await new User({ googleId: profile.id }).save();
       done(null,user);  
     }
