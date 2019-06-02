@@ -25,6 +25,8 @@ passport.use(new GoogleStrategy({ // i am 'google'
   proxy: true
   }, //that profile.id we want in our db
   //these callback get info for us after user redircet to our app
+  //these is our chance to get user info after passport get info for us
+  //from google with code after that redircet from google
   async (accessToken, refreshToken, profile, done) => { 
     const existUser = await User.findOne({ googleId: profile.id })
       if (existUser) return done(null, existUser);
