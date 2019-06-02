@@ -6,4 +6,5 @@ const userSchema = new Schema({
   googleId: String
 });
 
+//mongo collection
 mongoose.model('users', userSchema);

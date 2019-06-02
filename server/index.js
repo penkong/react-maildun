@@ -2,9 +2,11 @@
 //............................................................
 const express = require('express');
 const mongoose = require('mongoose');
-// const cookieSession = require('cookie-session'); //to inform express for cookie manager duo to serialize them
-// const passport = require('passport'); //we tell password keep track of sessions with cookie package
-// const GoogleStrategy = require('passport-google-oauth20').Strategy;
+//to inform passport for cookie duo to serialize and not token or what ever
+const cookieSession = require('cookie-session'); 
+//we tell password keep track of user-sessions with cookie package
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('./config/keys')
 
 // // ------- first stage load up guys ------------------
@@ -14,14 +16,13 @@ require('./services/passport');
 mongoose.connect(keys.mongoURI , { useNewUrlParser: true });
 // //>>---------- Route Games ---------------------------
 const app = express();
-// //.............for encryption cookie .................
-// app.use(cookieSession({ //config obj
-//   maxAge: 30 * 24 * 60 * 60 * 1000,
-//   keys: [keys.cookieKey] //use cookie key for encryption
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-
+//.............for cookie register on passport.................
+app.use(cookieSession({ //config obj
+  maxAge: 30 * 24 * 60 * 60 * 1000,
+  keys: [keys.cookieKey] //use cookie key for encryption
+}));
+app.use(passport.initialize()); //inform
+app.use(passport.session()); //inform use to cookie
 
 //................. routes......................
 //route for google and exchange code when user back from auth

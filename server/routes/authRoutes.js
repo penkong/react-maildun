@@ -11,11 +11,14 @@ module.exports = app => {
   app.get('/auth/google/callback', passport.authenticate('google'));
 
   app.get('/api/logout',(req, res) => {
-    req.logout(); //by passport;
+    req.logout(); //func attached to req obj by passport;
     res.send(req.user);
   });
-
+  // these req user come after passport work done
   app.get('/api/current_user', (req, res) => {
+    // all passport work com in this obj
+    //cookie session give here >> req.session >> passport look at req.session >> pass to deserialize >> app find us on deb >> app know us
+    // express-session (store a reference to session >> session id >> session store >> it have much info than other) === cookie-session (cookie is the session)
     res.send(req.user);
   });
 }
