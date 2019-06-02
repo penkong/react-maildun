@@ -17,12 +17,14 @@ passport.deserializeUser((id, done) => {
 
 
 //inform passport to use g strategy
+//it go for app.get('/auth/google')
 passport.use(new GoogleStrategy({ // i am 'google'
   clientID: keys.googleClientID, //need client id & secret
   clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback', //=>where we send user back after access permission
   proxy: true
   }, //that profile.id we want in our db
+  //these callback get info for us after user redircet to our app
   async (accessToken, refreshToken, profile, done) => { 
     const existUser = await User.findOne({ googleId: profile.id })
       if (existUser) return done(null, existUser);

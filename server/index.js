@@ -1,8 +1,9 @@
 const express = require('express');
 // const mongoose = require('mongoose');
 // const cookieSession = require('cookie-session'); //to inform express for cookie manager duo to serialize them
-// const passport = require('passport'); //we tell password keep track of sessions with cookie package
-// const keys = require('./config/keys')
+const passport = require('passport'); //we tell password keep track of sessions with cookie package
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys = require('./config/keys')
 
 // // ------- first stage load up guys ------------------
 // require('./models/User');
@@ -11,9 +12,18 @@ const express = require('express');
 // mongoose.connect(keys.mongoURI , { useNewUrlParser: true });
 // //>>---------- Route Games ---------------------------
 const app = express();
-app.get('/',(req,res)=>{
-  res.send({hi:'there'});
-})
+passport.use(new GoogleStrategy({
+    clientID: keys.googleClientID,
+    clientSecret: keys.googleClientSecret,
+    callbackURL: '/auth/google/callback'
+  }, (accessToken) => {
+    console.log(accessToken);
+  })
+);
+app.get('/auth/google', passport.authenticate('google',{
+  scope: ['profile', 'email']
+}));
+app.get('/auth/google/callback', passport.authenticate('google'));
 // //.............for encryption cookie .................
 // app.use(cookieSession({ //config obj
 //   maxAge: 30 * 24 * 60 * 60 * 1000,
