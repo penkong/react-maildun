@@ -34,7 +34,8 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,
-  callbackURL: '/auth/google/callback'
+  callbackURL: '/auth/google/callback',
+  proxy: true
 }, //we take info profile by passport and save it in db 
 async (accessToken, refreshToken, profile, done) => {
   //query to db is promise 
