@@ -8,11 +8,15 @@ module.exports = app => {
   //we have the code now
   //exchange code , passport handle for us and catch info see code
   //passport understand now user have code not like first time get req in top
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  //passport middle ware take out code for us 
+  app.get('/auth/google/callback', passport.authenticate('google'), (req,res)=>{
+    res.redirect('/surveys');
+  });
 
   app.get('/api/logout',(req, res) => {
     req.logout(); //func attached to req obj by passport;
-    res.send(req.user);
+    // res.send(req.user);
+    res.redirect('/');
   });
   // these req user come after passport work done
   app.get('/api/current_user', (req, res) => {

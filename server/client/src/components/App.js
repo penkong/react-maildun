@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
+import Landing from './Landing';
+import Dashboard from './Dashboard';
 
 class App extends Component {
   componentDidMount() {
@@ -15,10 +17,12 @@ class App extends Component {
     return (
       <div className="container">
       <BrowserRouter>
+      
         <div>
           <Header/>
-          {/* <Route path="/" exact component={Landing}/>
+          <Route path="/" exact component={Landing}/>
           <Route path="/surveys" exact component={Dashboard}/>
+          {/* 
           <Route path="/surveys/new" exact component={SurveyNew}/>
           <Route path="/sd" exact component={More}/> */}
         </div>

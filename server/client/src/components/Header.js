@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Header extends Component {
@@ -13,7 +14,7 @@ class Header extends Component {
         );
       default:
         return (
-          <li><a href="#">working</a></li>
+          <li><a href="/api/logout">Logout</a></li>
         );
     }
   }  
@@ -21,7 +22,8 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a className="left brand-logo">FUll Email</a>
+          <Link to={this.props.auth ? '/surveys' : '/'} 
+          className="left brand-logo">FUll Email</Link>
           <ul className="right">
             {this.renderContent()}
           </ul>
