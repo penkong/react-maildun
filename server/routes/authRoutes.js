@@ -22,6 +22,7 @@ module.exports = app => {
     //---------------------------------------------------------
     // express-session (store a reference to session >> session id >> session store 
     //>> it have much info than other) === cookie-session (cookie is the session)
+    //as soon as app run we req to this route to send if user is and save to redux store and from there pass as state to header
     res.send(req.user);
   });
 }
