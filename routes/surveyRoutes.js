@@ -24,6 +24,8 @@ module.exports = app => {
     // send mailer to api provider for email
     //Great place to send email
     const mailer = new Mailer(survey, surveyTemplate(survey));
+    //after creation Mailer.js
+    mailer.send();
     //webhook when some outer api do some process and give our app some type of info and notice
     // some callback that event happened. api/surveys/webhooks
   });
