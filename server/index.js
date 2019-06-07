@@ -32,6 +32,20 @@ app.use(passport.session()); //inform use to cookie
 require('./routes/authRoutes')(app); 
 //route for billing with stripe token come from client
 require('./routes/billingRoutes')(app); 
+//route for let react-router make decision
+if(process.env.NODE_ENV === 'production'){
+  //express serve production assets like main .js
+  //go there for anything requested
+  app.use(express.static('client/build')); 
+  //express will server index.html if does not recognize route
+  const path = require('path');
+  //catch all case
+  app.get('*', (req,res)=>{
+    //if i don't understand react-router will handle it
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+  })
+}
+
 //..................server run .........................
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, ()=> console.log('listening on'));
