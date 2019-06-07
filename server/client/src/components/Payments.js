@@ -5,7 +5,8 @@ import StripeCheckout from 'react-stripe-checkout';
 
 class Payments extends Component {
   render() {
-    // token is callback function
+    // token is callback function bring us whole info of buyer
+    // we post token with action creator to api server
     return (
       <StripeCheckout
         name="Emaily"
