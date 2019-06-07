@@ -12,6 +12,7 @@ const keys = require('./config/keys')
 const bodyParser = require('body-parser');
 // // ------- first stage load up guys ------------------
 require('./models/User');
+require('./models/Survey');
 require('./services/passport'); 
 // //>>-----------DB connection -------------------------
 mongoose.connect(keys.mongoURI , { useNewUrlParser: true });
