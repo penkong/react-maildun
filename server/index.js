@@ -8,7 +8,8 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('./config/keys')
-
+//when you post sth on express it does not auto parse need module
+const bodyParser = require('body-parser');
 // // ------- first stage load up guys ------------------
 require('./models/User');
 require('./services/passport'); 
@@ -16,7 +17,9 @@ require('./services/passport');
 mongoose.connect(keys.mongoURI , { useNewUrlParser: true });
 // //>>---------- Route Games ---------------------------
 const app = express();
-//.............for cookie register on passport.................
+//.............middle for parse income req for express.........
+app.use(bodyParser.json());
+//.............middle for cookie register on passport.................
 app.use(cookieSession({ //config obj
   maxAge: 30 * 24 * 60 * 60 * 1000,
   keys: [keys.cookieKey] //use cookie key for encryption
