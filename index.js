@@ -33,6 +33,7 @@ app.use(passport.session()); //inform use to cookie
 require('./routes/authRoutes')(app); 
 //route for billing with stripe token come from client
 require('./routes/billingRoutes')(app); 
+require('./routes/surveyRoutes')(app); 
 //route for let react-router make decision
 if(process.env.NODE_ENV === 'production'){
   //express serve production assets like main .js
