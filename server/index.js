@@ -27,6 +27,8 @@ app.use(passport.session()); //inform use to cookie
 //................. routes......................
 //route for google and exchange code when user back from auth
 require('./routes/authRoutes')(app); 
+//route for billing with stripe token come from client
+require('./routes/billingRoutes')(app); 
 //..................server run .........................
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, ()=> console.log('listening on'));
