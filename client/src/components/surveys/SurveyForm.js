@@ -50,5 +50,10 @@ const validate = (values) => {
 
 
 //name cause reduxForm save data with that label
-export default reduxForm({ validate , form: 'surveyForm' })(SurveyForm);
+// destroyOnUnmount prevent default habit of redux form help us save form info on back and edit
+export default reduxForm({ 
+  validate , 
+  form: 'surveyForm' , 
+  destroyOnUnmount: false 
+})(SurveyForm);
 //reduxForm => handleSubmit
