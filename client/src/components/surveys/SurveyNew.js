@@ -10,7 +10,11 @@ class SurveyNew extends Component {
   //because no other comp care about state here we cant use state lvl.
   state = { showFormReview: false };
   renderContent(){
-    if(this.state.showFormReview) return <SurveyFormReview />;
+    if(this.state.showFormReview) {
+      return <SurveyFormReview 
+        onCancel={()=>this.setState({showFormReview: false})}
+      />;
+    }
     return <SurveyForm onSurveySubmit={()=>this.setState({showFormReview: true })}/>
   }
   render() {
