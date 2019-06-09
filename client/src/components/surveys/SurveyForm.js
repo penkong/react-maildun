@@ -7,13 +7,8 @@ import { reduxForm, Field } from 'redux-form';
 import SurveyField from './SurveyField';
 //utils 
 import validateEmails from '../../utils/validateEmails';
+import FIELDS from './formFields';
 
-const FIELDS = [
-  {label: 'Survey Title', name:'title'},
-  {label: 'Subject Line', name:'subject'},
-  {label: 'Email Body', name:'body'},
-  {label: 'Recipients Email', name:'emails'}
-]
 
 class SurveyForm extends Component {
 
