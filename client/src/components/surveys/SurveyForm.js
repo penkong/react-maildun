@@ -36,7 +36,7 @@ class SurveyForm extends Component {
 //values is whole form values >> validate pass by meta
 const validate = (values) => {
   const errors = {};
-  errors.emails = validateEmails(values.emails || '');
+  errors.recipients = validateEmails(values.recipients || '');
   _.each(FIELDS, ({ name })=>{//each field
     if(!values[name]) errors[name] = `You must provide ${name}`;
   });
