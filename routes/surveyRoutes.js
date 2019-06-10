@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const Path = require('path-parser');
-const { URL } = require('url'); //parse urls
+const { URL } = require('url'); //parse urls for webhook part of back from send grid
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -47,17 +47,43 @@ module.exports = app => {
   //webhook when some outer api do some process and give our app some type of info and notice
   // some callback that event happened. api/surveys/webhooks
   app.post('/api/surveys/webhooks',(req, res)=>{
-    const events = _.map(req.body, ({email, url})=>{ //event obj come from sendgrid
-      const pathName = new URL(url).pathname //extract route from whole url
-      const p = new Path('/api/surveys/:surveyId/:choice');
-      const match = p.test(pathName); //ret id and choice
-      if(match) { 
-        return { email, surveyId: match.surveyId, choice: match.choice };
-      }
-    });
-    //compact from  _ remove undefined
-    const compactEvents = _.compact(events);
-    const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
+    const p = new Path('/api/surveys/:surveyId/:choice');
+    _.chian(req.body)
+      .map(({email, url})=>{ //event obj come from sendgrid
+        //extract route from whole url //ret id and choice
+        const match = p.test(new URL(url).pathname); 
+        if(match) { 
+          return { email, surveyId: match.surveyId, choice: match.choice };
+        }
+      })
+      .compact() //compact from  _ remove undefined
+      .uniqBy('email', 'surveyId')
+      .each(({surveyId, email, choice})=>{ //event
+        Survey.updateOne({
+          _id: surveyId,
+          recipients: {
+            $elemMatch: { email, responded: false}
+          }
+        },{
+          $inc: { [choice]: 1},
+          $set: { 'recipients.$.responded': true}
+        }).exec();
+      })
+      .value(); //value pull out refined arr
     res.send({});
   });
 };
+// app.post('/api/surveys/webhooks',(req, res)=>{
+//   const p = new Path('/api/surveys/:surveyId/:choice');
+//   const events = _.map(req.body, ({email, url})=>{ //event obj come from sendgrid
+//     //extract route from whole url //ret id and choice
+//     const match = p.test(new URL(url).pathname); 
+//     if(match) { 
+//       return { email, surveyId: match.surveyId, choice: match.choice };
+//     }
+//   });
+//   //compact from  _ remove undefined
+//   const compactEvents = _.compact(events);
+//   const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
+//   res.send({});
+// });
