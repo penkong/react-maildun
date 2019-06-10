@@ -5,6 +5,7 @@ const requireCredits = require('../middlewares/requireCredits');
 const Survey = mongoose.model('surveys');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
+
 module.exports = app => {
   app.get('/api/surveys/thanks',(req,res)=>{
     res.send('thanks for voting');
@@ -38,7 +39,11 @@ module.exports = app => {
       res.status(422).send(err);
     }
 
-
+    app.post('/api/surveys/webhooks',(req, res)=>{
+      console.log(req.body);
+      res.send({});
+    });
+    //webhook talk 2 server because of event happen by our client
     //webhook when some outer api do some process and give our app some type of info and notice
     // some callback that event happened. api/surveys/webhooks
   });
