@@ -10,9 +10,14 @@ const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate');
 
 module.exports = app => {
+  app.get('/api/surveys', requireLogin, async (req,res) => {
+    const surveys = await Survey.find({ _user: req.user.id })
+      .select({ recipients: false });
+    res.send(surveys);
+  });
   app.get('/api/surveys/:surveyId/:choice',(req,res)=>{
     res.send('thanks for voting!');
-  })
+  });
   //create survey and send out big email out
   app.post('/api/surveys', requireLogin, requireCredits, async (req,res)=>{
     const { title, subject, body, recipients } = req.body;
@@ -74,6 +79,19 @@ module.exports = app => {
     res.send({});
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 // app.post('/api/surveys/webhooks',(req, res)=>{
 //   const p = new Path('/api/surveys/:surveyId/:choice');
 //   const events = _.map(req.body, ({email, url})=>{ //event obj come from sendgrid
