@@ -1,3 +1,6 @@
+const _ = require('lodash');
+const Path = require('path-parser');
+const { URL } = require('url'); //parse urls
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
@@ -39,12 +42,22 @@ module.exports = app => {
       res.status(422).send(err);
     }
 
-    app.post('/api/surveys/webhooks',(req, res)=>{
-      console.log(req.body);
-      res.send({});
+  });
+  //webhook talk 2 server because of event happen by our client
+  //webhook when some outer api do some process and give our app some type of info and notice
+  // some callback that event happened. api/surveys/webhooks
+  app.post('/api/surveys/webhooks',(req, res)=>{
+    const events = _.map(req.body, ({email, url})=>{ //event obj come from sendgrid
+      const pathName = new URL(url).pathname //extract route from whole url
+      const p = new Path('/api/surveys/:surveyId/:choice');
+      const match = p.test(pathName); //ret id and choice
+      if(match) { 
+        return { email, surveyId: match.surveyId, choice: match.choice };
+      }
     });
-    //webhook talk 2 server because of event happen by our client
-    //webhook when some outer api do some process and give our app some type of info and notice
-    // some callback that event happened. api/surveys/webhooks
+    //compact from  _ remove undefined
+    const compactEvents = _.compact(events);
+    const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
+    res.send({});
   });
 };
