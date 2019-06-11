@@ -17,7 +17,7 @@ class Payments extends Component {
         stripeKey={process.env.REACT_APP_STRIPE_PUBLISH_KEY}
         dataName="screenshot"
       >
-        <button className="f6 f5-l br4 white bg-green no-underline washed-green ba b--green grow pv2 ph3 dib"> Add Credits < /button>
+        <button className="f6 f5-l br4 white bg-green no-underline washed-green ba b--green grow pv2 ph3 dib"> Add Credits </button>
       </StripeCheckout>
     );
   }
