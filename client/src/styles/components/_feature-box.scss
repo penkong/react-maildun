@@ -1,0 +1,32 @@
+.feature-box {
+  background-color: $color-primary-dark;
+  font-size: 1.6rem;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 0.3rem;
+  color: aliceblue;
+  box-shadow: 0 1rem 3rem $color-primary-dark, 0.15;
+  transition: all 0.2s;
+
+  @include respond(tab-port) {
+    padding: 1rem;
+  }
+
+  &__icon {
+    font-size: 6rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    background-image: linear-gradient(to top, #befdff, #37af9bc9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    @include respond(tab-port) {
+      margin-bottom: 0;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-0.5rem) scale(1.02);
+  }
+}

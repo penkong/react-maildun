@@ -1,0 +1,83 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 1.5rem 1.5rem rgba(128, 128, 128, 0.322);
+  background-color: rgba(255, 255, 255, 0.55);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: 1.6rem;
+  transform: skewX(-10deg);
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 3rem;
+    padding-left: 6rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+  // for skew shape text
+  // &>* {
+  //   transform: skewX(10deg);
+  // }
+
+  &__shape {
+    // outside shape works with only this. props force.
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(45% at 50% 50%);
+    // for float item we use transform
+    transform: translateX(-2rem) skewX(10deg);
+    // for  caption
+    position: relative;
+
+    @include respond(phone) {
+      transform: translateX(-2rem) skewX(0);
+    }
+  }
+
+  &__image {
+    height: 100%;
+    transform: translateX(-3.9rem) scale(1.15);
+    transition: all 0.8s;
+  }
+
+  &__text {
+    transform: skewX(10deg);
+
+    @include respond(phone) {
+      transform: skewX(0);
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.8s;
+    // to remove shake of animate
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__image {
+    transform: translateX(-4rem) scale(0.99);
+    filter: blur(2px) brightness(90%);
+  }
+}

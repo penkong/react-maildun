@@ -1,4 +1,6 @@
+import 'normalize.css/normalize.css';
 import 'materialize-css/dist/css/materialize.min.css';
+import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -16,8 +18,9 @@ const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>
-  <App/> 
+    <App/> 
   </Provider>
   , 
   document.querySelector('#root')
 );
+serviceWorker.register();

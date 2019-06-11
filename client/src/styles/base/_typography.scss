@@ -1,0 +1,97 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 auto;
+  /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+  backface-visibility: hidden;
+  /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+  margin-bottom: 4rem;
+
+  @include respond(phone) {
+  }
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: bold;
+    letter-spacing: 3rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    margin: 0 auto;
+    /* cubic-bezier is alternate to this. */
+    /* animation-iteration-count: 3; */
+    /* animation-delay: 1s; */
+
+    @include respond(phone) {
+      letter-spacing: 1rem;
+      font-size: 4.5rem;
+    }
+  }
+
+  &--sub {
+    display: block;
+    font-size: 2.6rem;
+    font-weight: bold;
+    letter-spacing: 1.2rem;
+    animation: moveInRight 1s ease-out;
+
+    @include respond(phone) {
+      letter-spacing: 0.5rem;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  // make text gradient
+  display: inline-block;
+  background-image: linear-gradient(
+    to right,
+    $color-btn--white,
+    $color-primary-dark
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  //
+  letter-spacing: 0.3rem;
+  transition: all 0.2s;
+
+  @include respond(tab-port) {
+    font-size: 2.8rem;
+  }
+
+  @include respond(phone) {
+    font-size: 2rem;
+  }
+
+  &:hover {
+    transform: skewY(2deg) skewX(6deg) scale(1.05);
+    text-shadow: 0.2rem 0.2rem 0.4rem $color-shadow-btn-white;
+  }
+}
+
+.heading-tertiary {
+  font-size: 1.8rem;
+  font-weight: 600;
+  transform: uppercase;
+}
+
+.paragraph {
+  font-size: 1.4rem;
+
+  &:not(last-child) {
+    margin-bottom: 3rem;
+  }
+}
