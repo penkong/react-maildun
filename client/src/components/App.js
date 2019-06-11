@@ -16,7 +16,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="w-100 w-90-l center">
+      <div className="w-100">
       <BrowserRouter>
       
         <div>
