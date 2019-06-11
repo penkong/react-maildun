@@ -1,5 +1,6 @@
 import 'normalize.css/normalize.css';
 import 'materialize-css/dist/css/materialize.min.css';
+import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
