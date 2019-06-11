@@ -16,7 +16,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="container">
+      <div className="w-100 w-90-l center">
       <BrowserRouter>
       
         <div>
@@ -24,8 +24,6 @@ class App extends Component {
           <Route path="/" exact component={Landing}/>
           <Route path="/surveys" exact component={Dashboard}/>
           <Route path="/surveys/new" exact component={SurveyNew}/>
-          {/* 
-          <Route path="/sd" exact component={More}/> */}
         </div>
       </BrowserRouter>
     </div>

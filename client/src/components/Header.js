@@ -11,26 +11,24 @@ class Header extends Component {
         return; 
       case false:
         return (
-          <li><a href="/auth/google">Login with Google</a></li>
+          <div><a className="link" href="/auth/google">Login with Google</a></div>
         );
       default:
         return [
-          <li key="1"><Payments/></li>,
-          <li style={{margin: '0 10px'}} key="3">Credits : {this.props.auth.credits}</li>,
-          <li key="2"><a href="/api/logout">Logout</a></li>,
+          <span className="mr2 mr3-l mt2" key="1"><Payments/></span>,
+          <span className="f6 f5-l br4 white bg-blue no-underline ba b--blue grow pv2 ph3 dib mr2 mt2 mr3-l" key="3">Credits : {this.props.auth.credits}</span>,
+          <span className="f6 f5-l br-pill dark-red no-underline ba grow pv2 ph3 dib mt2" key="2"><a className="link red" href="/api/logout">Logout</a></span>,
         ];
     }
   }  
   render() {
     return (
-      <nav>
-        <div className="nav-wrapper">
+      <nav className="helvetica static cf bg-near-white mt1-l br4-l pa2">
           <Link to={this.props.auth ? '/surveys' : '/'} 
-          className="left brand-logo">FUll Email</Link>
-          <ul className="right">
+          className="fl w-100 w-40-l georgia navy f1 b f-subheadline-l ttu tracked-tight tc link mb2 mr3">MAILDUN</Link>
+          <div className="fl fr-l w-100 w-40-l tc tr-l">
             {this.renderContent()}
-          </ul>
-        </div>
+          </div>
       </nav>
     );
   }
