@@ -14,19 +14,26 @@ class SurveyForm extends Component {
 
   renderFields(){
     return _.map(FIELDS, ({label,name}) => {
-      return <Field key={name} component={SurveyField} type="text" label={label} name={name}/>
+      return <Field className="w-100 center" key={name} component={SurveyField} type="text" label={label} name={name}/>
     });
   }
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
-          {this.renderFields()}
-          <Link to="/surveys" className="red btn-flat left white-text" type="submit">Cancel
-          </Link>
-          <button className="teal btn-flat right white-text" type="submit">Next
-            <i className="material-icons right">done</i>
-          </button>
+        <form className="avenir w-100 w-80-m w-50-l br4 shadow-3 center hidden bg-white mv3 pa3"
+          onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}
+        >
+          <div className="db navy w-100 measure pa2 mv2 mv4-l center">
+            {this.renderFields()}
+          </div>
+          <div className="cf">
+            <div className="fl">
+              <Link className="f6 link dim br3 ba bw1 ph3 pv2 mb2 dib dark-pink" to="/surveys" type="submit">Cancel</Link>
+            </div>
+            <div className="fr">
+              <button className="f6 link dim br3 ph3 pv2 mb2 dib white bg-navy" type="submit">Next</button>
+            </div>
+          </div>
         </form>
       </div>
     );
