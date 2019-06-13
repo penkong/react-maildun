@@ -10,7 +10,7 @@ class SurveyList extends Component {
   renderSurveys(){
     return this.props.surveys.reverse().map(survey =>{
       return (
-        <div className="avenir w-100 w-80-m w-50-l br4 shadow-3 center hidden bg-white mv3" key={survey._id}>
+        <div className="w-100 w-80-m w-50-l br4 shadow-3 center hidden bg-white mv3" key={survey._id}>
           <div className="navy w-100 measure pa2 mb2 ml1 ml4-l">
             <div className="w-100 center f4 mb2 mt3">Title : {survey.title}</div>
             <p className="f6 f5-ns lh-copy mb2">
@@ -30,7 +30,7 @@ class SurveyList extends Component {
   }
   render() {
     return (
-      <div className="w-100 center">
+      <div className="w-100 center" style={{fontFamily: "Roboto"}}>
         {this.renderSurveys()}
       </div>
     );
