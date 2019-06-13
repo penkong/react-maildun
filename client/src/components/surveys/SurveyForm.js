@@ -1,7 +1,7 @@
 //show user input to add info
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // all html el of form come here with Field comp
 import { reduxForm, Field } from 'redux-form';
 import SurveyField from './SurveyField';
@@ -26,12 +26,14 @@ class SurveyForm extends Component {
           <div className="db navy w-100 measure pa2 mv2 mv4-l center">
             {this.renderFields()}
           </div>
-          <div className="cf">
-            <div className="fl">
-              <Link className="f6 link dim br3 ba bw1 ph3 pv2 mb2 dib dark-pink" to="/surveys" type="submit">Cancel</Link>
-            </div>
+          <div className="cf w-50 center">
+            <NavLink activeStyle={{fontWeight: "bold", color: "red", borderStyle: "none", backGroundColor: "none" }} to="/surveys" type="submit"> 
+              <span className="f6 f4-m f3-l fw2 normal-l b br-pill ba bg-white hover-bg-red hover-white b--red no-underline grow pv2 ph3 dib">
+                Cancel
+              </span>
+            </NavLink>
             <div className="fr">
-              <button className="f6 link dim br3 ph3 pv2 mb2 dib white bg-navy" type="submit">Next</button>
+              <button className="f6 f4-m f3-l fw2 normal-l b br-pill ba bg-white hover-bg-navy hover-white b--navy no-underline grow pv2 ph3 dib" type="submit">Next</button>
             </div>
           </div>
         </form>
