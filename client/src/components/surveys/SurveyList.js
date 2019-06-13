@@ -10,17 +10,17 @@ class SurveyList extends Component {
   renderSurveys(){
     return this.props.surveys.reverse().map(survey =>{
       return (
-        <div className="helvetica w-100 w-40-l br2 shadow-4 center hidden bg-white mv4" key={survey._id}>
-          <div className="ml2 pa2">
-            <span className="db w-100 f4">title : {survey.title}</span>
-            <p className="f6 f5-ns lh-copy measure">
+        <div className="avenir w-100 w-80-m w-50-l br4 shadow-3 center hidden bg-white mv3" key={survey._id}>
+          <div className="navy w-100 measure pa2 mb2 ml1 ml4-l">
+            <div className="w-100 center f4 mb2 mt3">Title : {survey.title}</div>
+            <p className="f6 f5-ns lh-copy mb2">
               body : {survey.body}
             </p>
-            <p>
+            <p className="f6 lh-copy mb2">
               Sent On: {new Date(survey.dateSent).toLocaleDateString()}
             </p>
           </div>
-          <div className="white bg-green center b f6 f4-l fw5 tc pa2 mh2">
+          <div className="white br4 br--bottom bg-green hover-bg-navy center b f6 f4-l fw5 tc pa2 mh2">
             <p><pre>voted till now  <span>Yes:{survey.yes}</span>  <span>No:{survey.no}</span></pre>
             </p>
           </div>
