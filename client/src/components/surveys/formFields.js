@@ -11,7 +11,7 @@ export default  [{
     name: 'body'
   },
   {
-    label: 'Recipients Email',
+    label: 'Recievers',
     name: 'recipients'
   }
 ]

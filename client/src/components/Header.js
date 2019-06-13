@@ -31,9 +31,9 @@ class Header extends Component {
   }  
   render() {
     return (
-      <nav className="helvetica w-100 center cf bg-navy pa2">
+      <nav className="w-100 center cf bg-navy pa2" style={{fontFamily:"Kanit"}}>
           <Link to={this.props.auth ? '/surveys' : '/'} 
-          className="fl w-100 w-40-l georgia white f1 b f-subheadline-l ttu tracked-tight bn tc tl-l link mb1 ml4-l">MAILDUN</Link>
+          className="fl w-100 w-40-l white f1 b f-subheadline-l ttu tracked-tight bn tc tl-l link mb1 ml4-l">MAILDUN</Link>
           <div className="fl fr-l w-100 w-40-l tc tr-l mr4-l mt4-l mv2">
             {this.renderContent()}
           </div>

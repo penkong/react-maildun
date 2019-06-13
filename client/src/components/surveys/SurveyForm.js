@@ -19,21 +19,21 @@ class SurveyForm extends Component {
   }
   render() {
     return (
-      <div>
-        <form className="avenir w-100 w-80-m w-50-l br4 shadow-3 center hidden bg-white mv3 pa3"
+      <div style={{fontFamily: "Roboto"}}>
+        <form className="w-100 w-80-m w-60-l br4 shadow-3 center hidden bg-white mv2 mv5-ns pa3"
           onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}
         >
-          <div className="db navy w-100 measure pa2 mv2 mv4-l center">
+          <div className="db w-100 pa2 mv2 mv4-l center">
             {this.renderFields()}
           </div>
-          <div className="cf w-50 center">
-            <NavLink activeStyle={{fontWeight: "bold", color: "red", borderStyle: "none", backGroundColor: "none" }} to="/surveys" type="submit"> 
-              <span className="f6 f4-m f3-l fw2 normal-l b br-pill ba bg-white hover-bg-red hover-white b--red no-underline grow pv2 ph3 dib">
+          <div className="cf w-70 center">
+            <NavLink className="link no-underline" exact activeStyle={{backgroundColor: "inherit", border:"none"}}  to="/surveys" type="submit"> 
+              <div className="f6 f4-ns fw2 red bg-white hover-dark-red normal-l br-pill no-underline ph4 pv2 dib">
                 Cancel
-              </span>
+              </div>
             </NavLink>
             <div className="fr">
-              <button className="f6 f4-m f3-l fw2 normal-l b br-pill ba bg-white hover-bg-navy hover-white b--navy no-underline grow pv2 ph3 dib" type="submit">Next</button>
+              <button className="f6 f4-m f4-l fw2 white bg-navy hover-navy hover-bg-white normal-l br-pill ba b--navy no-underline grow ph4 pv2 dib" type="submit">Next</button>
             </div>
           </div>
         </form>
