@@ -13,16 +13,17 @@ module.exports = app => {
     res.redirect('/surveys');
   });
 
-  app.get('/api/logout',(req, res) => {
+  app.get('/api/logout',async (req, res) => {
     // req.logOut(); //func attached to req obj by passport;
     // // res.send(req.user);
     // req.session.destroy(function (err) {
     //   console.log(err);
     //   res.redirect('/');
-    req.logOut();
-    res.clearCookie('app.session');
-    res.clearCookie('app.session.sig');
-    res.redirect('/');
+    await req.logout();
+    req.session = null;
+    res.clearCookie("app.session");
+    res.clearCookie("app.session.sig");
+    return res.redirect('/');
   });
   // these req user come after passport work done
   app.get('/api/current_user', (req, res) => {

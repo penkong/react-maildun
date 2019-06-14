@@ -28,6 +28,7 @@ app.use(cookieSession({ //config obj
 app.use(passport.initialize()); //inform
 //inform use to cookie
 app.use(passport.session({
+    secret: keys.cookieKey,
     saveUninitialized: false,
     resave: false
 }));
