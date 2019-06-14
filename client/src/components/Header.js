@@ -6,9 +6,9 @@ import * as actions from '../actions';
 import Payments from './Payments';
 
 class Header extends Component {
-  componentDidUpdate() {
-    this.props.fetchUser();
-  }
+  // componentDidUpdate() {
+  //   this.props.fetchUser();
+  // }
   // componentDidMount() {
   //   this.props.fetchUser(this.props.auth);
   //   this.forceUpdateHandler();
