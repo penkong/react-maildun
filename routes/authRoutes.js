@@ -3,6 +3,7 @@ const requireLogin = require('../middlewares/requireLogin');
 module.exports = app => {
   //it use services/passport new GoogleStrategy
   app.get('/auth/google', passport.authenticate('google', {
+    session: false,
     scope: ['profile', 'email']
   }));
   //we have the code now
