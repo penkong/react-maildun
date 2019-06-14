@@ -8,6 +8,9 @@ class Header extends Component {
   componentDidMount() {
     this.forceUpdate();
   }
+  forceUpdateHandler = () => {
+    this.forceUpdate(this.props.auth);
+  };
   renderContent(){
     switch (this.props.auth) {
       case null:
@@ -15,7 +18,7 @@ class Header extends Component {
       case false:
         return (
           <div className="f6 f4-m f3-l fw2 normal-l b br-pill ba bg-white hover-bg-navy b--navy no-underline grow pv2 ph3 dib mr2 mr3-l">
-            <a className="link navy hover-white outline-0" href="/auth/google">Login with Google</a>
+            <a className="link navy hover-white outline-0" href="/auth/google" onClick={this.forceUpdateHandler}>Login with Google</a>
           </div>
         );
       default:
@@ -27,7 +30,7 @@ class Header extends Component {
             Credits {this.props.auth.credits}
           </span>,
           <span className="f6 f5-l br-pill white no-underline ba grow pv2 ph3 dib" key="2">
-            <a className="link red" href="/api/logout">Logout</a>
+            <a className="link red" href="/api/logout" onClick={this.forceUpdateHandler}>Logout</a>
           </span>,
         ];
     }
