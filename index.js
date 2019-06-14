@@ -22,7 +22,7 @@ const app = express();
 app.use(bodyParser.json());
 //.............middle for cookie register on passport.................
 app.use(cookieSession({ //config obj
-  maxAge: 30 * 24 * 60 * 60 * 1000,
+  maxAge: 4 * 24 * 60 * 60 * 1000,
   keys: [keys.cookieKey] //use cookie key for encryption
 }));
 app.use(passport.initialize()); //inform

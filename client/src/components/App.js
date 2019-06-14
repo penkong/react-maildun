@@ -16,7 +16,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="w-100 bg-near-white vh-100" style={{fontFamily: "Roboto"}} >
+      <div className="w-100 bg-near-white vh-100 aspect-ratio--4x3" style={{fontFamily: "Roboto"}} >
         <BrowserRouter>
           <div>
             <Header/>

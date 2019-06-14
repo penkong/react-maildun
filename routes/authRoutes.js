@@ -14,8 +14,9 @@ module.exports = app => {
   });
 
   app.get('/api/logout',(req, res) => {
-    req.logout(); //func attached to req obj by passport;
+    req.logOut(); //func attached to req obj by passport;
     // res.send(req.user);
+    req.session = null;
     res.redirect('/');
   });
   // these req user come after passport work done
