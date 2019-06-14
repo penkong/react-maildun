@@ -27,7 +27,7 @@ class SurveyForm extends Component {
             {this.renderFields()}
           </div>
           <div className="cf w-100 w-70-ns center">
-            <NavLink className="fl link no-underline" exact activeStyle={{backgroundColor: "inherit", border:"none"}}  to="/surveys" type="submit"> 
+            <NavLink className="fl link no-underline" exact activeStyle={{backgroundColor: "inherit"}}  to="/surveys" type="submit"> 
               <div className="f6 f4-ns fw2 red bg-white hover-dark-red normal-l br-pill no-underline ph4 pv2 dib">
                 Cancel
               </div>

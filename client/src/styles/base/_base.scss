@@ -9,6 +9,10 @@
 html {
   font-size: 100%; //10px
 }
+html:active {
+  outline: none !important;
+} 
+
 
 //   @include respond(big-desktop) {
 //     font-size: 75%; // 12/16

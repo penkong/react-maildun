@@ -11,7 +11,7 @@ const SurveyField = ({ input, label, meta: { error, touched } }) => {
       <div className="fl fr-m fr-l w-100 w-70-ns">
         <input className="ba b--lightest-blue pv2 ph1 w-100" {...input}/>
       </div>
-      <div className="fr dark-pink b pa1 pl2 mt1">
+      <div className="fr w-100 tr dark-pink b pa1 pl2 mt1">
         {touched && error}
       </div>
     </div>

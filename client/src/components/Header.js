@@ -12,7 +12,7 @@ class Header extends Component {
       case false:
         return (
           <div className="f6 f4-m f3-l fw2 normal-l b br-pill ba bg-white hover-bg-navy b--navy no-underline grow pv2 ph3 dib mr2 mr3-l">
-            <a className="link navy hover-white" href="/auth/google">Login with Google</a>
+            <a className="link navy hover-white outline-0" href="/auth/google">Login with Google</a>
           </div>
         );
       default:
