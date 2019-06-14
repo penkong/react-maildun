@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import Payments from './Payments';
 
 class Header extends Component {
+  componentDidMount() {
+    this.forceUpdate();
+  }
   renderContent(){
     switch (this.props.auth) {
       case null:
