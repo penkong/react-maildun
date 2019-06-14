@@ -14,10 +14,16 @@ module.exports = app => {
   });
 
   app.get('/api/logout',(req, res) => {
-    req.logOut(); //func attached to req obj by passport;
-    // res.send(req.user);
+    // req.logOut(); //func attached to req obj by passport;
+    // // res.send(req.user);
+    // req.session.destroy(function (err) {
+    //   console.log(err);
+    //   res.redirect('/');
+    req.logOut();
+    res.status(200).clearCookie('connect.sid', {
+      path: '/'
+    });
     req.session.destroy(function (err) {
-      console.log(err);
       res.redirect('/');
     });
   });
