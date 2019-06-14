@@ -16,8 +16,10 @@ module.exports = app => {
   app.get('/api/logout',(req, res) => {
     req.logOut(); //func attached to req obj by passport;
     // res.send(req.user);
-    req.session = null;
-    res.redirect('/');
+    req.session.destroy(function (err) {
+      console.log(err);
+      res.redirect('/');
+    });
   });
   // these req user come after passport work done
   app.get('/api/current_user', (req, res) => {
