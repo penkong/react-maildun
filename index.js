@@ -27,6 +27,11 @@ app.use(cookieSession({ //config obj
 }));
 app.use(passport.initialize()); //inform
 app.use(passport.session()); //inform use to cookie
+app.use(passport.session({
+    secret: 'secret',
+    saveUninitialized: false,
+    resave: false
+}));
 
 //................. routes......................
 //route for google and exchange code when user back from auth

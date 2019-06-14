@@ -20,12 +20,9 @@ module.exports = app => {
     //   console.log(err);
     //   res.redirect('/');
     req.logOut();
-    res.status(200).clearCookie('connect.sid', {
-      path: '/'
-    });
-    req.session.destroy(function (err) {
-      res.redirect('/');
-    });
+    res.clearCookie('app.session');
+    res.clearCookie('app.session.sig');
+    res.redirect('/');
   });
   // these req user come after passport work done
   app.get('/api/current_user', (req, res) => {
