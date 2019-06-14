@@ -1,4 +1,9 @@
 @import "./styles/base/_base";
+
+* {
+  outline: none !important;
+}
+
 // @import "abstract/functions";
 // @import "abstract/mixins";
 // @import "abstract/variables";

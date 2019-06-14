@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 import Payments from './Payments';
 
 class Header extends Component {
   componentDidMount() {
+    this.props.fetchUser(this.props.auth);
     this.forceUpdateHandler();
   }
   forceUpdateHandler = () => {
@@ -49,4 +51,4 @@ class Header extends Component {
 }
 const mapStateToProps = ({ auth }) => { return { auth }};
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps,actions)(Header);
