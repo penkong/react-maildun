@@ -1,7 +1,7 @@
 import 'normalize.css/normalize.css';
 // import 'materialize-css/dist/css/materialize.min.css';
 import './index.scss';
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -24,4 +24,4 @@ ReactDOM.render(
   , 
   document.querySelector('#root')
 );
-serviceWorker.register(); 
+// serviceWorker.register(); 
