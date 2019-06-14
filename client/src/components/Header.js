@@ -6,7 +6,7 @@ import Payments from './Payments';
 
 class Header extends Component {
   componentDidMount() {
-    this.forceUpdate();
+    this.forceUpdateHandler();
   }
   forceUpdateHandler = () => {
     this.forceUpdate(this.props.auth);
