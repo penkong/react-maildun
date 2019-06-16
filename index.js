@@ -29,8 +29,10 @@ app.use(passport.initialize()); //inform
 //inform use to cookie
 app.use(passport.session({
     secret: keys.cookieKey,
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
+    httpOnly: true,
+    ephemeral: true
 }));
 
 //................. routes......................
