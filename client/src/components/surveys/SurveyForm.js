@@ -10,30 +10,39 @@ import validateEmails from '../../utils/validateEmails';
 import FIELDS from './formFields';
 
 
+const styles = {
+  form: 'w-100 w-80-m w-60-l center hidden bg-white br4 shadow-3 mv2 mv5-ns pa3',
+  fields: 'db w-100 center mv2 mv4-l pa2',
+  field: 'w-100 center',
+  buttons: 'cf w-100 w-70-ns center',
+  navCancel: 'fl link no-underline',
+  cancel: 'dib f6 f4-ns fw2 normal-l red bg-white hover-dark-red br-pill no-underline ph4 pv2',
+  navNext: 'fr',
+  next: 'dib f6 f4-m f4-l fw2 normal-l white bg-navy hover-bg-green ba br-pill no-underline grow ph4 pv2'
+}
 class SurveyForm extends Component {
 
   renderFields(){
     return _.map(FIELDS, ({label,name}) => {
-      return <Field className="w-100 center" key={name} component={SurveyField} type="text" label={label} name={name}/>
+      return <Field className={styles.field} key={name} component={SurveyField} type="text" label={label} name={name}/>
     });
   }
   render() {
+    const { handleSubmit, onSurveySubmit } = this.props;
     return (
       <div style={{fontFamily: "Roboto"}}>
-        <form className="w-100 w-80-m w-60-l br4 shadow-3 center hidden bg-white mv2 mv5-ns pa3"
-          onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}
-        >
-          <div className="db w-100 pa2 mv2 mv4-l center">
+        <form className={styles.form} onSubmit={ handleSubmit(onSurveySubmit) }>
+          <div className={styles.fields}>
             {this.renderFields()}
           </div>
-          <div className="cf w-100 w-70-ns center">
-            <NavLink className="fl link no-underline" exact activeStyle={{backgroundColor: "inherit"}}  to="/surveys" type="submit"> 
-              <div className="f6 f4-ns fw2 red bg-white hover-dark-red normal-l br-pill no-underline ph4 pv2 dib">
-                Cancel
-              </div>
+          <div className={styles.buttons}>
+            <NavLink className={styles.navCancel} exact 
+              activeStyle={{backgroundColor: "inherit"}}  to="/surveys" type="submit"
+            > 
+              <div className={styles.navCancel}> Cancel </div>
             </NavLink>
-            <div className="fr">
-              <button className="f6 f4-m f4-l fw2 white bg-navy hover-bg-green normal-l br-pill ba no-underline grow ph4 pv2 dib" type="submit">Next</button>
+            <div className={styles.navNext}>
+              <button className={styles.next} type="submit">Next</button>
             </div>
           </div>
         </form>
@@ -46,12 +55,12 @@ class SurveyForm extends Component {
 const validate = (values) => {
   const errors = {};
   errors.recipients = validateEmails(values.recipients || '');
-  _.each(FIELDS, ({ name })=>{//each field
+  //each field
+  _.each(FIELDS, ({ name })=>{
     if(!values[name]) errors[name] = `You must provide ${name}`;
   });
   return errors;
 }
-
 
 //name cause reduxForm save data with that label
 // destroyOnUnmount prevent default habit of redux form help us save form info on back and edit
