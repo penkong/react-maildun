@@ -5,14 +5,19 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Payments from './Payments';
 
+const styles = {
+  nav: 'w-100 center cf bg-navy pa2',
+  navLogo: 'fl w-100 w-40-l tc tl-l f1 b f-subheadline-l ttu tracked-tight white bn link mb1 ml4-l',
+  rightButtons: 'w-100 w-40-l fl fr-l tc tr-l mr4-l mt4-l mv2',
+  loginWithG: 'dib f6 f4-m f3-l fw2 normal-l b bg-white hover-bg-navy ba br-pill b--navy no-underline grow mr2 mr3-l pv2 ph3',
+  loginWithGLink: 'navy hover-white link',
+  payment: 'mr2 mr3-l',
+  credits: 'dib f6 f5-l navy bg-white ba br-pill b--navy no-underline grow mr2 mr3-l pv2 ph3',
+  logout: 'dib f6 f5-l white ba br-pill no-underline grow pv2 ph3',
+  logoutLink: 'red link'
+};
+
 class Header extends Component {
-  // componentDidUpdate() {
-  //   this.props.fetchUser();
-  // }
-  // componentDidMount() {
-  //   this.props.fetchUser(this.props.auth);
-  //   this.forceUpdateHandler();
-  // }
   forceUpdateHandler = () => {
     this.forceUpdate();
   };
@@ -22,30 +27,30 @@ class Header extends Component {
         return; 
       case false:
         return (
-          <div className="f6 f4-m f3-l fw2 normal-l b br-pill ba bg-white hover-bg-navy b--navy no-underline grow pv2 ph3 dib mr2 mr3-l">
-            <a className="link navy hover-white outline-0" href="/auth/google" onClick={this.forceUpdateHandler}>Login with Google</a>
+          <div className={styles.loginWithG}>
+            <a className={styles.loginWithGLink} href="/auth/google" onClick={this.forceUpdateHandler}>
+              Login with Google
+            </a>
           </div>
         );
       default:
         return [
-          <span className="mr2 mr3-l" key="1">
-            <Payments/>
-          </span>,
-          <span className="f6 f5-l br-pill navy bg-white no-underline ba b--navy grow pv2 ph3 dib mr2 mr3-l" key="3">
-            Credits {this.props.auth.credits}
-          </span>,
-          <span className="f6 f5-l br-pill white no-underline ba grow pv2 ph3 dib" key="2">
-            <a className="link red" href="/api/logout" onClick={this.forceUpdateHandler}>Logout</a>
+          <span className={styles.payment} key="1"><Payments/></span>,
+          <span className={styles.credits} key="3">Credits {this.props.auth.credits}</span>,
+          <span className={styles.logout} key="2">
+            <a className={styles.logoutLink} href="/api/logout" onClick={this.forceUpdateHandler}>Logout</a>
           </span>,
         ];
     }
   }  
+  
   render() {
     return (
-      <nav className="w-100 center cf bg-navy pa2" style={{fontFamily:"Kanit"}}>
-          <Link to={this.props.auth ? '/surveys' : '/'} 
-          className="fl w-100 w-40-l white f1 b f-subheadline-l ttu tracked-tight bn tc tl-l link mb1 ml4-l">MAILDUN</Link>
-          <div className="fl fr-l w-100 w-40-l tc tr-l mr4-l mt4-l mv2">
+      <nav className={styles.nav} style={{fontFamily:"Kanit"}}>
+          <Link to={this.props.auth ? '/surveys' : '/'} className={styles.navLogo}>
+            MAILDUN
+          </Link>
+          <div className={styles.rightButtons}>
             {this.renderContent()}
           </div>
       </nav>
@@ -55,3 +60,11 @@ class Header extends Component {
 const mapStateToProps = ({ auth }) => { return { auth }};
 
 export default connect(mapStateToProps,actions)(Header);
+
+// componentDidUpdate() {
+//   this.props.fetchUser();
+// }
+// componentDidMount() {
+//   this.props.fetchUser(this.props.auth);
+//   this.forceUpdateHandler();
+// }

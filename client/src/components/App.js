@@ -9,7 +9,7 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
 
-
+//whole app use styles obj in top 
 
 const styles = {
   main: 'w-100 bg-near-white vh-100 aspect-ratio--4x3'
