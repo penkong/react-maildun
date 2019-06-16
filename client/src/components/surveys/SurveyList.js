@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSurveys } from '../../actions';
 
+const styles = {
+  landing: 'w-100 center',
+  card: 'w-100 w-80-m w-50-l center hidden bg-white br4 shadow-3 mv3',
+  cardContent: 'w-100 measure navy mb2 ml1 ml4-l pa2',
+  title: 'w-100 center f4 mb2 mt3',
+  body: 'f6 f5-ns lh-copy mb2',
+  sendTime: 'f6 lh-copy mb2',
+  harvest: 'center b f6 f4-l fw5 tc white bg-green hover-bg-navy br4 br--bottom pa2 mh2'
+}
 
 class SurveyList extends Component {
   componentDidMount() {
@@ -10,19 +19,14 @@ class SurveyList extends Component {
   renderSurveys(){
     return this.props.surveys.reverse().map(survey =>{
       return (
-        <div className="w-100 w-80-m w-50-l br4 shadow-3 center hidden bg-white mv3" key={survey._id}>
-          <div className="navy w-100 measure pa2 mb2 ml1 ml4-l">
-            <div className="w-100 center f4 mb2 mt3">Title : {survey.title}</div>
-            <p className="f6 f5-ns lh-copy mb2">
-              body : {survey.body}
-            </p>
-            <p className="f6 lh-copy mb2">
-              Sent On: {new Date(survey.dateSent).toLocaleDateString()}
-            </p>
+        <div className={styles.card} key={survey._id}>
+          <div className={styles.cardContent}>
+            <div className={styles.title}>Title : {survey.title}</div>
+            <p className={styles.body}> body : {survey.body}</p>
+            <p className={styles.sendTime}>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</p>
           </div>
-          <div className="white br4 br--bottom bg-green hover-bg-navy center b f6 f4-l fw5 tc pa2 mh2">
-            <p><pre>voted till now  <span>Yes:{survey.yes}</span>  <span>No:{survey.no}</span></pre>
-            </p>
+          <div className={styles.harvest}>
+            <p><pre>voted till now  <span>Yes:{survey.yes}</span>  <span>No:{survey.no}</span></pre></p>
           </div>
         </div>
       )
@@ -30,7 +34,7 @@ class SurveyList extends Component {
   }
   render() {
     return (
-      <div className="w-100 center" style={{fontFamily: "Roboto"}}>
+      <div className={styles.landing} style={{fontFamily: "Roboto"}}>
         {this.renderSurveys()}
       </div>
     );
