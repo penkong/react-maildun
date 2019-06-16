@@ -30,7 +30,7 @@ app.use(passport.initialize()); //inform
 app.use(passport.session({
     secret: keys.cookieKey,
     saveUninitialized: false,
-    resave: false
+    resave: false,
 }));
 
 //................. routes......................

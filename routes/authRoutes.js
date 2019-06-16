@@ -20,10 +20,13 @@ module.exports = app => {
     // req.session.destroy(function (err) {
     //   console.log(err);
     //   res.redirect('/');
-    await req.logout();
+    await req.logOut();
     req.session = null;
-    res.clearCookie("app.session");
-    res.clearCookie("app.session.sig");
+    //   req.session.destroy(function (err) {
+    //   if (err) { return next(err); }
+    //   // The response should indicate that the user is no longer authenticated.
+    // res.clearCookie("connect.sid");
+    // res.clearCookie("connect.sid.sig");
     return res.redirect('/');
   });
   // these req user come after passport work done

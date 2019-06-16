@@ -31,6 +31,7 @@ passport.deserializeUser((id, done) => {
 //it go for app.get('/auth/google')
 // i am 'google'
 // callback url=>where we send user back after access permission
+
 passport.use(new GoogleStrategy({
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,
@@ -43,7 +44,7 @@ async (accessToken, refreshToken, profile, done) => {
   if (existUser) return done(null, existUser); //er,record >> pass to serialize
   const user = await new User({ googleId: profile.id }).save();
   done(null,user);  //inform passport finish >> pass to serialize
-}));
+}))
 //after step from authRoutes strategy do this give access token to guys
 
 // ----))))+++++======>>> finally all of this add to user 

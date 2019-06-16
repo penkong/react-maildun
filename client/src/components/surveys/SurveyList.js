@@ -26,7 +26,7 @@ class SurveyList extends Component {
             <p className={styles.sendTime}>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</p>
           </div>
           <div className={styles.harvest}>
-            <p><pre>voted till now  <span>Yes:{survey.yes}</span>  <span>No:{survey.no}</span></pre></p>
+            <p>voted till now  <span className="mh3">Yes:{survey.yes}</span>No:{survey.no}</p>
           </div>
         </div>
       )
