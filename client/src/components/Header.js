@@ -18,9 +18,6 @@ const styles = {
 };
 
 class Header extends Component {
-  forceUpdateHandler = () => {
-    this.forceUpdate();
-  };
   renderContent(){
     switch (this.props.auth) {
       case null:
@@ -28,7 +25,7 @@ class Header extends Component {
       case false:
         return (
           <div className={styles.loginWithG}>
-            <a className={styles.loginWithGLink} href="/auth/google" onClick={this.forceUpdateHandler}>
+            <a className={styles.loginWithGLink} href="/auth/google">
               Login with Google
             </a>
           </div>
@@ -38,7 +35,7 @@ class Header extends Component {
           <span className={styles.payment} key="1"><Payments/></span>,
           <span className={styles.credits} key="3">Credits {this.props.auth.credits}</span>,
           <span className={styles.logout} key="2">
-            <a className={styles.logoutLink} href="/api/logout" onClick={this.forceUpdateHandler}>Logout</a>
+            <a className={styles.logoutLink} href="/api/logout">Logout</a>
           </span>,
         ];
     }

@@ -17,6 +17,7 @@ const styles = {
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.forceUpdate();
   }
   
   render() {
