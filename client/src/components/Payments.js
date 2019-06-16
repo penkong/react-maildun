@@ -17,6 +17,7 @@ class Payments extends Component {
         name="MAILDUN"
         description="$5 to add up 5 credits"
         amount={500}
+        locale='auto'
         token={token=>this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_PUBLISH_KEY}
         dataName="screenshot"

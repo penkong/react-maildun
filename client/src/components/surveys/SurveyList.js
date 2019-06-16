@@ -4,7 +4,7 @@ import { fetchSurveys } from '../../actions';
 
 const styles = {
   landing: 'w-100 center',
-  card: 'w-100 w-80-m w-50-l center hidden bg-white br4 shadow-3 mv3',
+  card: 'w-90 w-80-m w-50-l center hidden bg-white br4 shadow-3 mv3',
   cardContent: 'w-100 measure navy mb2 ml1 ml4-l pa2',
   title: 'w-100 center f4 mb2 mt3',
   body: 'f6 f5-ns lh-copy mb2',
@@ -26,7 +26,10 @@ class SurveyList extends Component {
             <p className={styles.sendTime}>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</p>
           </div>
           <div className={styles.harvest}>
-            <p>voted till now  <span className="mh3">Yes:{survey.yes}</span>No:{survey.no}</p>
+            <p>voted till now  
+              <span className="f6 f5-ns mh3 pre">Yes : {survey.yes}</span>
+              <span className="f6 f5-ns pre">No : {survey.no}</span>
+            </p>
           </div>
         </div>
       )
