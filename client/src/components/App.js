@@ -9,6 +9,11 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
 
+
+
+const styles = {
+  main: 'w-100 bg-near-white vh-100 aspect-ratio--4x3'
+};
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -16,7 +21,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="w-100 bg-near-white vh-100 aspect-ratio--4x3" style={{fontFamily: "Roboto"}} >
+      <div className={styles.main} style={{fontFamily: "Roboto"}} >
         <BrowserRouter>
           <div>
             <Header/>
