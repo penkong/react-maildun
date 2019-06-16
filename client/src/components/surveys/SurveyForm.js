@@ -39,7 +39,7 @@ class SurveyForm extends Component {
             <NavLink className={styles.navCancel} exact 
               activeStyle={{backgroundColor: "inherit"}}  to="/surveys" type="submit"
             > 
-              <div className={styles.navCancel}> Cancel </div>
+              <div className={styles.cancel}> Cancel </div>
             </NavLink>
             <div className={styles.navNext}>
               <button className={styles.next} type="submit">Next</button>
