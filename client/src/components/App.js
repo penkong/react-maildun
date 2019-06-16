@@ -8,6 +8,7 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import SurveyNew from './surveys/SurveyNew';
+import Fix from './Fix';
 
 //whole app use styles obj in top 
 
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path="/" exact component={Landing}/>
             <Route path="/surveys" exact component={Dashboard}/>
             <Route path="/surveys/new" exact component={SurveyNew}/>
+            <Route path="/ambulance" exact component={Fix}/>
           </div>
         </BrowserRouter>
       </div>

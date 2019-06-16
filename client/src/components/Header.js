@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Payments from './Payments';
 
+
 const styles = {
   nav: 'w-100 center cf bg-navy pa2',
   navLogo: 'fl w-100 w-40-l tc tl-l f1 b f-subheadline-l ttu tracked-tight white bn link mb1 ml4-l',
